@@ -1,0 +1,35 @@
+labeling_training = []
+
+
+
+
+
+
+
+
+
+%label_change = label;
+label_t_change = label_t;
+%{
+label_change(strcmp('boxing', label_change))= {'1'};
+label_change(strcmp('walking', label_change))= {'2'};
+label_change(strcmp('running', label_change))= {'3'};
+label_change(strcmp('jogging', label_change))= {'4'};
+label_change(strcmp('handclapping', label_change))= {'5'};
+label_change(strcmp('handwaving', label_change))= {'6'};
+%}
+
+%{
+label_t_change(strcmp('boxing', label_t_change))= {'1'};
+label_t_change(strcmp('walking', label_t_change))= {'2'};
+label_t_change(strcmp('running', label_t_change))= {'3'};
+label_t_change(strcmp('jogging', label_t_change))= {'4'};
+label_t_change(strcmp('handclapping', label_t_change))= {'5'};
+label_t_change(strcmp('handwaving', label_t_change))= {'6'};
+%}
+
+
+S = sprintf('%s*', label_change{:});
+svmlab = sscanf(S, '%f*');
+
+

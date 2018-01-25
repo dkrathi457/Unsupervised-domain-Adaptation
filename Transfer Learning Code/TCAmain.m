@@ -2,9 +2,16 @@ clc
 close all
 clear
 
-addpath('C:\Users\Deepak Kumar\Documents\Breast Image Transfer Learning\libsvm-3.11\matlab');
-addpath('C:\Users\Deepak Kumar\Documents\Breast Image Transfer Learning');
-%addpath('C:\Users\MingShao\Dropbox\Matlab_Tool\transferlearning-master\code');
+addpath('D:\Ond Drive this pc\OneDrive - UMASS Dartmouth\Mammographic Image Analysis Final Version\Breast cancer Image transfer Learning\Transfer Learning Code')
+%whole image feature path
+addpath('D:\Ond Drive this pc\OneDrive - UMASS Dartmouth\Mammographic Image Analysis Final Version\Breast cancer Image transfer Learning\Features Files\Inbreast\Resnet Full Image Classifier')
+addpath('D:\Ond Drive this pc\OneDrive - UMASS Dartmouth\Mammographic Image Analysis Final Version\Breast cancer Image transfer Learning\Features Files\MIAS\MIAS whole Images')
+addpath('D:\Ond Drive this pc\OneDrive - UMASS Dartmouth\Mammographic Image Analysis Final Version\Breast cancer Image transfer Learning\Features Files\DDSM\Resnet Full Image classifier')
+%patch feature path
+addpath('D:\Ond Drive this pc\OneDrive - UMASS Dartmouth\Mammographic Image Analysis Final Version\Breast cancer Image transfer Learning\Features Files\DDSM\Patch Features')
+addpath('D:\Ond Drive this pc\OneDrive - UMASS Dartmouth\Mammographic Image Analysis Final Version\Breast cancer Image transfer Learning\Features Files\MIAS\MIAS Patches')
+addpath('D:\Ond Drive this pc\OneDrive - UMASS Dartmouth\Mammographic Image Analysis Final Version\Breast cancer Image transfer Learning\libsvm-3.11\matlab')
+
 
 % load source
 load('DDSM\Resnet Full Image classifier\DDSMfeatures.mat');
@@ -55,10 +62,10 @@ model = svmtrain(srcLabel, srcData, '-t 0 -c 1');
 % Use the SVM model to classify the data
 [predict_label, accuracy, prob_values] = svmpredict(tarLabel, tarData, model, '-b 0'); % run the SVM model on the test data
 %%
-auc = plotroc(tarLabel,tarData,'TCA', model);
+auc = plotroc(tarLabel,tarData, ':r', 'TCA',  model);
 %hold on
 %auc1 = plotroc(Yt,Y_tar_pseudo, 'BDA')
-legend('show');
+%legend('show');
 %plotroc(tarLabel,predict_label)
 
 %% transfer learning
